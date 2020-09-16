@@ -50,9 +50,7 @@ var _ = Describe("Operator", func() {
 				Limits:   map[corev1.ResourceName]k8sresource.Quantity{},
 			}
 			Expect(createRabbitmqCluster(ctx, rmqClusterClient, cluster)).To(Succeed())
-
 			waitForRabbitmqRunning(cluster)
-			waitForClusterAvailable(cluster)
 
 			hostname = kubernetesNodeIp(ctx, clientSet)
 			port = rabbitmqNodePort(ctx, clientSet, cluster, "management")
@@ -331,7 +329,6 @@ CONSOLE_LOG=new`
 				}
 				Expect(createRabbitmqCluster(ctx, rmqClusterClient, cluster)).To(Succeed())
 				waitForRabbitmqRunning(cluster)
-				waitForClusterAvailable(cluster)
 
 				// Passing a single hostname for certificate creation works because
 				// the AMPQS client is connecting using the same hostname
@@ -401,7 +398,6 @@ CONSOLE_LOG=new`
 			}
 			Expect(createRabbitmqCluster(ctx, rmqClusterClient, cluster)).To(Succeed())
 			waitForRabbitmqRunning(cluster)
-			waitForClusterAvailable(cluster)
 
 			hostname = kubernetesNodeIp(ctx, clientSet)
 			var err error
